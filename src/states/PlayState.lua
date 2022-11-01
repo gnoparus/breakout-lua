@@ -6,8 +6,8 @@ function PlayState:init()
     self.paddle = Paddle()
     self.ball = Ball(1)
 
-    self.ball.dx = math.random(-20, 20)
-    self.ball.dy = math.random(-5, 0)
+    self.ball.dx = math.random(-200, 200)
+    self.ball.dy = math.random(-50, 50)
 
     self.ball.x = VIRTUAL_WIDTH / 2 - self.ball.width / 2
     self.ball.y = VIRTUAL_HEIGHT / 2 - self.ball.height / 2
@@ -29,6 +29,11 @@ function PlayState:update(dt)
 
     self.paddle:update(dt)
     self.ball:update(dt)
+
+    if self.ball:collides(self.paddle) then
+        self.ball.dy = -self.ball.dy
+        gSounds['paddle-hit']:play()
+    end
 
     if love.keyboard.wasPressed('escape') then
         love.event.quit()

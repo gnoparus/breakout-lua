@@ -23,15 +23,15 @@ function Ball:collides(target)
 end
 
 function Ball:reset()
-    self.x = VIRTUAL_WIDTH / 2 - self.width
-    self.y = VIRTUAL_HEIGHT / 2 - self.height
+    self.x = VIRTUAL_WIDTH / 2 - self.width / 2
+    self.y = VIRTUAL_HEIGHT / 2 - self.height / 2
     self.dx = 0
     self.xy = 0
 end
 
 function Ball:update(dt)
     self.x = self.x + self.dx * dt
-    self.y = self.y + self.dy + dt
+    self.y = self.y + self.dy * dt
 
     if self.x <= 0 then
         self.x = 0
