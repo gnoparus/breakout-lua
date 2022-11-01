@@ -32,6 +32,7 @@ function PlayState:update(dt)
 
     if self.ball:collides(self.paddle) then
         self.ball.dy = -self.ball.dy
+        self.ball.y = self.paddle.y - self.ball.height
         gSounds['paddle-hit']:play()
     end
 
