@@ -14,6 +14,12 @@ function StartState:update(dt)
         love.event.quit()
     end
 
+    if love.keyboard.wasPressed('enter') or love.keyboard.wasPressed('return') then
+        if highlighted == 1 then
+            gStateMachine:change('play')
+        end
+    end
+
 end
 
 function StartState:render()
