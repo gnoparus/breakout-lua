@@ -4,6 +4,14 @@ PlayState = Class {
 
 function PlayState:init()
     self.paddle = Paddle()
+    self.ball = Ball(1)
+
+    self.ball.dx = math.random(-20, 20)
+    self.ball.dy = math.random(-5, 0)
+
+    self.ball.x = VIRTUAL_WIDTH / 2 - self.ball.width / 2
+    self.ball.y = VIRTUAL_HEIGHT / 2 - self.ball.height / 2
+
 end
 
 function PlayState:update(dt)
@@ -20,6 +28,7 @@ function PlayState:update(dt)
     end
 
     self.paddle:update(dt)
+    self.ball:update(dt)
 
     if love.keyboard.wasPressed('escape') then
         love.event.quit()
@@ -28,6 +37,7 @@ end
 
 function PlayState:render()
     self.paddle:render()
+    self.ball:render()
 
     if self.pause then
         love.graphics.setFont(gFonts['large'])

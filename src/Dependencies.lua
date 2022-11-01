@@ -5,6 +5,7 @@ Class = require 'lib.class'
 require 'src.constants'
 
 require 'src.states.Paddle'
+require 'src.Ball'
 
 require 'src.StateMachine'
 require 'src.Util'
