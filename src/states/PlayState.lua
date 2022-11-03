@@ -34,12 +34,36 @@ function PlayState:update(dt)
     if self.ball:collides(self.paddle) then
         self.ball.dy = -self.ball.dy
         self.ball.y = self.paddle.y - self.ball.height
+
+        -- If ball collide with edge move dx faster 
+        if self.ball.x < self.paddle.x + (self.paddle.width / 2) and self.paddle.dx < 0 then
+            self.ball.dx = -50 + -(8 * (self.paddle.x + self.paddle.width / 2 - self.ball.x))
+        end
+        if self.ball.x > self.paddle.x + (self.paddle.width / 2) and self.paddle.dx > 0 then
+            self.ball.dx = 50 + (8 * (self.ball.x - self.paddle.x - self.paddle.width / 2))
+        end
         gSounds['paddle-hit']:play()
     end
 
     for k, brick in pairs(self.bricks) do
         if brick.inPlay and self.ball:collides(brick) then
             brick:hit()
+
+            if self.ball.x + 2 < brick.x and self.ball.dx > 0 then
+                self.ball.dx = -self.ball.dx
+                self.ball.x = brick.x - 8
+            elseif self.ball.x + self.ball.width - 2 > brick.x + brick.width and self.ball.dx < 0 then
+                self.ball.dx = -self.ball.dx
+                self.ball.x = brick.x + brick.width
+            elseif self.ball.y < brick.y then
+                self.ball.dy = -self.ball.dy
+                self.ball.y = brick.y - brick.height
+            else
+                self.ball.dy = -self.ball.dy
+                self.ball.y = brick.y + brick.height
+            end
+            self.ball.dy = self.ball.dy * 1.05
+            break
         end
     end
 
