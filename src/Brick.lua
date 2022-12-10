@@ -30,6 +30,11 @@ function Brick:hit()
             self.color = self.color - 1
         end
     end
+
+    if not self.inPlay then
+        gSounds['brick-hit-1']:stop()
+        gSounds['brick-hit-1']:play()
+    end
 end
 
 function Brick:render()
