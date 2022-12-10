@@ -70,6 +70,7 @@ function PlayState:update(dt)
         end
     end
 
+    -- Ball fall below bottem edge
     if self.ball.y > VIRTUAL_HEIGHT then
         self.health = self.health - 1
         gSounds['hurt']:play()
