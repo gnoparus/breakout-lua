@@ -63,6 +63,9 @@ function love.load()
         end,
         ['serve'] = function()
             return ServeState()
+        end,
+        ['game-over'] = function()
+            return GameOverState()
         end
     }
 
@@ -121,7 +124,7 @@ function renderHealth(health)
     end
 
     for i = 1, 3 - health do
-        love.graphics.draw(gTextures['hearts'], gFrames['hearts'][2], healthx, 4)
+        love.graphics.draw(gTextures['hearts'], gFrames['hearts'][2], healthX, 4)
         healthX = healthX + 11
     end
 end
