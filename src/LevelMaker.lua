@@ -6,8 +6,14 @@ LevelMaker = Class {}
 function LevelMaker.createMap(level)
     local bricks = {}
 
+    -- Normal
     local numRows = math.random(1, 5)
     local numCols = math.random(7, 13)
+
+    -- -- For testing progression
+    -- local numRows = math.random(1, 1)
+    -- local numCols = math.random(1, 1)
+
     -- make sure numCols Odd
     numCols = (numCols % 2 == 0) and (numCols + 1) or numCols
 
