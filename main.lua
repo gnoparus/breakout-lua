@@ -69,6 +69,9 @@ function love.load()
         end,
         ['victory'] = function()
             return VictoryState()
+        end,
+        ['high-scores'] = function()
+            return HighScoreState()
         end
     }
 
