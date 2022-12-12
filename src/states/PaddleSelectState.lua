@@ -41,7 +41,7 @@ function PaddleSelectState:update(dt)
     end
 
     if love.keyboard.wasPressed('escape') then
-        love.event.quite()
+        love.event.quit()
     end
 end
 
